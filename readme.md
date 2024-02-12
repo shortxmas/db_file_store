@@ -11,7 +11,7 @@ This version removes a if statement that doesnt allow file access and creates in
 
 - Add db_file_storage to installed apps 
 ```
-INSTALLED_APPS =[
+INSTALLED_APPS = [
   'db_file_storage'
 ]
 ```
@@ -26,8 +26,8 @@ DEFAULT_FILE_STORAGE = 'db_file_storage.storage.DatabaseFileStorage'
 STATIC_URL = 'static/'  
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIR = [
-    BASE_DIR / 'static',
-    BASE_DIR / 'static/icon',
+  BASE_DIR / 'static',
+  BASE_DIR / 'static/icon',
 ] 
 ``` 
 
