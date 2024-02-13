@@ -53,3 +53,33 @@ urlpatterns[
 urlpatterns[] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ```
 
+### In models.py/admin.py
+
+- For every model that references the image override delete method
+```
+def delete(self, *args, **kwargs):
+  super(MiscellaneousImage, self).delete(*args, **kwargs)
+  File.objects.filter(filename = self.image.name).delete()
+```
+
+- For that same model, add to its admin class
+```
+def delete(self, *args, **kwargs):
+  super(MiscellaneousImage, self).delete(*args, **kwargs)
+  File.objects.filter(filename = self.image.name).delete()
+```
+
+
+## FILE MODEL 
+
+```
+class File(models.Model):
+  bytes = models.TextField()
+  filename = models.CharField(max_length=255)
+  mimetype = models.CharField(max_length=50)
+
+  def __str__(self):
+    return self.filename
+```
+
+### When you refernece the master file model set the upload_to=<FileModelLocationReference>/bytes/filename/mimetype' ###
