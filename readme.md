@@ -64,9 +64,13 @@ def delete(self, *args, **kwargs):
 
 - For that same model, add to its admin class
 ```
-def delete(self, *args, **kwargs):
-  super(MiscellaneousImage, self).delete(*args, **kwargs)
-  File.objects.filter(filename = self.image.name).delete()
+class MiscellaneousImageAdmin(admin.ModelAdmin):
+  def get_actions(self, request):
+    actions = super().get_actions(request)
+    if request.user.username[0].upper() != "J":
+      if "delete_selected" in actions:
+        del actions["delete_selected"]
+    return actions
 ```
 
 
