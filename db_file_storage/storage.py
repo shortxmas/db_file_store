@@ -95,7 +95,6 @@ class DatabaseFileStorage(Storage):
 
         # if os.sep != '/':  # Windows fix (see a6d4707) # pragma: no cover
         #     name = name.replace('/', os.sep)
-        print("HGIII")
         storage_attrs = self._get_storage_attributes(name)
         model_class_path = storage_attrs['model_class_path']
         content_field = storage_attrs['content_field']
